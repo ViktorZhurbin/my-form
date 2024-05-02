@@ -1,5 +1,12 @@
-enum BlockTypes {
+enum BlockVariant {
 	YesNo,
 }
 
-export { BlockTypes };
+type Block = {
+	type: BlockVariant;
+	question: string;
+};
+
+export { BlockVariant };
+
+export type { Block };

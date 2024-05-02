@@ -1,68 +1,65 @@
 "use client";
 
-import { useState } from "react";
-import { BlockTypes } from "@/constants/blockTypes";
+import { useRef, useState } from "react";
+import { Block, BlockVariant } from "@/constants/blockTypes";
+import { BlockWrapper } from "@/components/BlockWrapper/BlockWrapper";
 import styles from "./page.module.css";
+import { BlockItem } from "@/components/BlockItem/BlockItem";
 
-const blocks = [
+const blocks: Block[] = [
 	{
-		type: BlockTypes.YesNo,
+		type: BlockVariant.YesNo,
 		question: "Q1",
 	},
 	{
-		type: BlockTypes.YesNo,
+		type: BlockVariant.YesNo,
 		question: "Q2",
 	},
 	{
-		type: BlockTypes.YesNo,
+		type: BlockVariant.YesNo,
 		question: "Q3",
 	},
 ];
 
-const getBlockWrapperStyles = (index: number, step: number) => {
-	switch (index) {
-		case step:
-			return {};
-
-		case step - 1:
-			return { opacity: 0, transform: `translateY(-100vh)` };
-
-		case step + 1:
-			return { opacity: 0, transform: `translateY(100vh)` };
-
-		default:
-			return { display: "none" };
-	}
-};
-
 export default function Home() {
 	const [step, setStep] = useState(0);
+
+	const goToPreviousStep = () => {
+		if (step === 0) {
+			return;
+		}
+
+		setStep((step) => step - 1);
+	};
+
+	const goToNextStep = () => {
+		if (step === blocks.length - 1) {
+			return;
+		}
+
+		setStep((step) => step + 1);
+	};
 
 	return (
 		<main className={styles.main}>
 			{blocks.map((block, index) => {
 				return (
-					<section
+					<BlockWrapper
 						key={block.question}
 						className={styles.blockWrapper}
-						style={getBlockWrapperStyles(index, step)}
+						index={index}
+						step={step}
 					>
-						<div className={styles.block}>{block.question}</div>
-					</section>
+						<BlockItem block={block} className={styles.block} />
+					</BlockWrapper>
 				);
 			})}
 
 			<div className={styles.navigation}>
-				<button
-					disabled={step === 0}
-					onClick={() => setStep((step) => step - 1)}
-				>
+				<button disabled={step === 0} onClick={goToPreviousStep}>
 					Previous
 				</button>
-				<button
-					disabled={step === blocks.length - 1}
-					onClick={() => setStep((step) => step + 1)}
-				>
+				<button disabled={step === blocks.length - 1} onClick={goToNextStep}>
 					Next
 				</button>
 			</div>
