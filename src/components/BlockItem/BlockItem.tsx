@@ -5,9 +5,29 @@ import { Button, Heading } from "@radix-ui/themes";
 type BlockItemProps = {
 	block: Block;
 	stepNumber: number;
+	isLast: boolean;
+	onSubmitForm: () => void;
+	goToNextStep: () => void;
 };
 
-export const BlockItem = ({ stepNumber, block }: BlockItemProps) => {
+export const BlockItem = ({
+	block,
+	stepNumber,
+	isLast,
+	onSubmitForm,
+	goToNextStep,
+}: BlockItemProps) => {
+	let buttonText;
+	let onSubmit;
+
+	if (isLast) {
+		buttonText = "Submit";
+		onSubmit = onSubmitForm;
+	} else {
+		buttonText = "OK";
+		onSubmit = goToNextStep;
+	}
+
 	return (
 		<div className={styles.wrapper}>
 			<Heading className={styles.header}>
@@ -28,7 +48,9 @@ export const BlockItem = ({ stepNumber, block }: BlockItemProps) => {
 				))}
 			</div>
 
-			<Button className={styles.submitButton}>OK</Button>
+			<Button className={styles.submitButton} onClick={onSubmit}>
+				{buttonText}
+			</Button>
 		</div>
 	);
 };

@@ -4,6 +4,7 @@ enum BlockVariant {
 }
 
 type Block = {
+	id: string;
 	type: BlockVariant;
 	question: string;
 	options: string[];

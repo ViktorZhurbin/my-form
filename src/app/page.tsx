@@ -9,16 +9,19 @@ import { Button } from "@radix-ui/themes";
 
 const blocks: Block[] = [
 	{
+		id: crypto.randomUUID(),
 		type: BlockVariant.YesNo,
 		question: "Some Question",
 		options: ["Yes", "No"],
 	},
 	{
+		id: crypto.randomUUID(),
 		type: BlockVariant.MultipleChoice,
 		question: "Some Question",
 		options: ["Yes", "No", "Whatever"],
 	},
 	{
+		id: crypto.randomUUID(),
 		type: BlockVariant.YesNo,
 		question: "Some Question",
 		options: ["Yes", "No"],
@@ -44,17 +47,22 @@ export default function Home() {
 		setStep((step) => step + 1);
 	};
 
+	const handleSubmit = () => {
+		console.log("submit");
+	};
+
 	return (
 		<main className={styles.main}>
 			{blocks.map((block, index) => {
 				return (
-					<BlockWrapper
-						key={block.question}
-						className={styles.blockWrapper}
-						index={index}
-						step={step}
-					>
-						<BlockItem stepNumber={index + 1} block={block} />
+					<BlockWrapper key={block.id} step={step} index={index}>
+						<BlockItem
+							block={block}
+							stepNumber={index + 1}
+							isLast={index === blocks.length - 1}
+							onSubmitForm={handleSubmit}
+							goToNextStep={goToNextStep}
+						/>
 					</BlockWrapper>
 				);
 			})}
