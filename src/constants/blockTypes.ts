@@ -1,5 +1,6 @@
 enum BlockVariant {
 	YesNo,
+	MultipleChoice,
 }
 
 type Block = {

@@ -1,19 +1,17 @@
 import { ReactElement } from "react";
+import styles from "./BlockWrapper.module.css";
 
 type BlockWrapperProps = {
 	children: ReactElement;
 	step: number;
 	index: number;
-	className: string;
 };
-export const BlockWrapper = ({
-	step,
-	index,
-	className,
-	children,
-}: BlockWrapperProps) => {
+export const BlockWrapper = ({ step, index, children }: BlockWrapperProps) => {
 	return (
-		<section className={className} style={getBlockWrapperStyles(index, step)}>
+		<section
+			className={styles.wrapper}
+			style={getBlockWrapperStyles(index, step)}
+		>
 			{children}
 		</section>
 	);

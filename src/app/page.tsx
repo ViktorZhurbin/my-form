@@ -14,9 +14,9 @@ const blocks: Block[] = [
 		options: ["Yes", "No"],
 	},
 	{
-		type: BlockVariant.YesNo,
+		type: BlockVariant.MultipleChoice,
 		question: "Some Question",
-		options: ["Yes", "No"],
+		options: ["Yes", "No", "Whatever"],
 	},
 	{
 		type: BlockVariant.YesNo,

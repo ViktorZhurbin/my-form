@@ -10,7 +10,7 @@ type BlockItemProps = {
 export const BlockItem = ({ stepNumber, block }: BlockItemProps) => {
 	return (
 		<div className={styles.wrapper}>
-			<Heading>
+			<Heading className={styles.header}>
 				{stepNumber}. {block.question}
 			</Heading>
 
@@ -28,7 +28,7 @@ export const BlockItem = ({ stepNumber, block }: BlockItemProps) => {
 				))}
 			</div>
 
-			<Button>OK</Button>
+			<Button className={styles.submitButton}>OK</Button>
 		</div>
 	);
 };

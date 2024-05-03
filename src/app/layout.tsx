@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Theme } from "@radix-ui/themes";
+import { Theme as RadixTheme } from "@radix-ui/themes";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 import "@radix-ui/themes/styles.css";
 import "./globals.css";
 
@@ -14,9 +15,11 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<body>
-				<Theme>{children}</Theme>
+				<NextThemesProvider attribute="class">
+					<RadixTheme>{children}</RadixTheme>
+				</NextThemesProvider>
 			</body>
 		</html>
 	);
