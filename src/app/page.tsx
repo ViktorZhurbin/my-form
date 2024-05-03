@@ -5,19 +5,23 @@ import { Block, BlockVariant } from "@/constants/blockTypes";
 import { BlockWrapper } from "@/components/BlockWrapper/BlockWrapper";
 import styles from "./page.module.css";
 import { BlockItem } from "@/components/BlockItem/BlockItem";
+import { Button } from "@radix-ui/themes";
 
 const blocks: Block[] = [
 	{
 		type: BlockVariant.YesNo,
-		question: "Q1",
+		question: "Some Question",
+		options: ["Yes", "No"],
 	},
 	{
 		type: BlockVariant.YesNo,
-		question: "Q2",
+		question: "Some Question",
+		options: ["Yes", "No"],
 	},
 	{
 		type: BlockVariant.YesNo,
-		question: "Q3",
+		question: "Some Question",
+		options: ["Yes", "No"],
 	},
 ];
 
@@ -50,18 +54,18 @@ export default function Home() {
 						index={index}
 						step={step}
 					>
-						<BlockItem block={block} className={styles.block} />
+						<BlockItem stepNumber={index + 1} block={block} />
 					</BlockWrapper>
 				);
 			})}
 
 			<div className={styles.navigation}>
-				<button disabled={step === 0} onClick={goToPreviousStep}>
+				<Button disabled={step === 0} onClick={goToPreviousStep}>
 					Previous
-				</button>
-				<button disabled={step === blocks.length - 1} onClick={goToNextStep}>
+				</Button>
+				<Button disabled={step === blocks.length - 1} onClick={goToNextStep}>
 					Next
-				</button>
+				</Button>
 			</div>
 		</main>
 	);

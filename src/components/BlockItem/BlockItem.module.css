@@ -1,5 +1,16 @@
-.block {
+.wrapper {
+	height: 100%;
+
 	display: flex;
-	align-items: center;
+	flex-direction: column;
+	align-items: flex-start;
 	justify-content: center;
+
+	gap: 32px;
+}
+
+.optionWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
 }

@@ -5,6 +5,7 @@ enum BlockVariant {
 type Block = {
 	type: BlockVariant;
 	question: string;
+	options: string[];
 };
 
 export { BlockVariant };
